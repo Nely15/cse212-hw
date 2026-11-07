@@ -14,7 +14,6 @@ public static class Arrays
         // be implemented by another person.
 
         //Step 1: Create a new array that has the requested length.
-
         //Step 2: Use a loop to go through each position in the array.
         //Step 3: Multiply the number by the current position plus one.
         //Step 4: Store the result in the current position of the array.
