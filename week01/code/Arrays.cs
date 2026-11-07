@@ -22,6 +22,7 @@ public static class Arrays
         double[] multiples = new double[length];
 
         for (int i = 0; i < length; i++)
+        
         {
             multiples[i] = number * (i + 1);
         }
@@ -44,7 +45,7 @@ public static class Arrays
         // be implemented by another person.
 
         //Step 1: Calculate the starting position of the numbers that need to move to the beginning.
-        //Step 2: Create a new list contianing the numbers from the starting position to the end.
+        //Step 2: Create a new list containing the numbers from the starting position to the end.
         //Step 3: Remove those numbers from the original list.
         //Step 4: Insert the saved numbers at the beginning of the original list. 
 
