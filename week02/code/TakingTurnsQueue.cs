@@ -37,17 +37,29 @@ public class TakingTurnsQueue
         {
             throw new InvalidOperationException("No one in the queue.");
         }
+        
+        Person person = _people.Dequeue();
+
+        //Zero or negative turns means the person has infinite turns.
+        if (person.Turns <= 0)
+        {
+            _people.Enqueue(person);
+        }
+
         else
         {
-            Person person = _people.Dequeue();
-            if (person.Turns > 1)
+            //Use one of the person's remaining turns.
+            person.Turns--;
+
+            //Put them back only if they still have turns remaining.
+            if (person.Turns > 0)
             {
-                person.Turns -= 1;
                 _people.Enqueue(person);
             }
-
-            return person;
+            
         }
+        
+        return person;
     }
 
     public override string ToString()
