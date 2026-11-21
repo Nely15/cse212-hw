@@ -177,9 +177,8 @@ public static class SetsAndMaps
         {
             if (feature?.Properties?.Place == null ||
                 feature.Properties.Mag == null)
-            {
                 continue; 
-            }
+            
             string place = feature.Properties.Place;
             double magnitude = feature.Properties.Mag.Value;
 
