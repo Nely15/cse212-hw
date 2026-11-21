@@ -19,10 +19,26 @@ public static class SetsAndMaps
     /// that there were no duplicates) and therefore should not be returned.
     /// </summary>
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
+    
     public static string[] FindPairs(string[] words)
     {
-        // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        HashSet<string> wordSet = new HashSet<string>(words);
+        List<string> pairs = new List<string>();
+
+        foreach (string word in words)
+        { 
+            string reversed = new string(word.Reverse().ToArray());
+            
+            if (word != reversed && wordSet.Contains(reversed))
+            {
+                if (string.Compare(word, reversed, StringComparison.Ordinal) < 0)
+                {
+                    pairs.Add($"{word} & {reversed}");
+                }
+            }
+        }
+        
+        return pairs.ToArray();
     }
 
     /// <summary>
@@ -42,7 +58,17 @@ public static class SetsAndMaps
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
-            // TODO Problem 2 - ADD YOUR CODE HERE
+            
+            string degree = fields[3].Trim();
+
+            if (degrees.ContainsKey(degree))
+            {
+                degrees[degree]++;
+            }
+            else
+            {
+                degrees.Add(degree, 1);
+            }
         }
 
         return degrees;
@@ -66,8 +92,46 @@ public static class SetsAndMaps
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
     {
-        // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        Dictionary<char, int> letters = new Dictionary<char, int>();
+
+        foreach (char letter in word1)
+        {
+            if (letter == ' ')
+                continue; 
+
+            char lowerLetter = char.ToLowerInvariant(letter);
+
+            if (letters.ContainsKey(lowerLetter))
+            {
+                letters[lowerLetter]++;
+            }
+            else
+            {
+                letters.Add(lowerLetter,1);
+            }
+        }
+
+        foreach (char letter in word2)
+        {
+            if (letter == ' ')
+                continue; 
+        
+            char lowerLetter = char.ToLowerInvariant(letter);
+
+            if (!letters.ContainsKey(lowerLetter))
+            {
+                return false;
+            }
+
+            letters[lowerLetter]--;
+
+            if (letters[lowerLetter] == 0)
+            {
+                letters.Remove(lowerLetter);
+            }
+        }
+
+        return letters.Count == 0;
     }
 
     /// <summary>
