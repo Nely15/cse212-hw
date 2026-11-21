@@ -27,7 +27,7 @@ public class Maze
 
     private void Move(int direction, int changeX, changeY)
     {
-        if (!_mazeMap.TryGetValue((_currX, currY), out var directions)
+        if (!_mazeMap.TryGetValue((_currX, _currY), out var directions)
             || ! directions[direction])
         {
             throw new InvalidOperationException("Can't go that way!");
