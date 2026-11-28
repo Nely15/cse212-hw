@@ -178,7 +178,7 @@ public class LinkedList : IEnumerable<int>
 
         while (curr is not null)
         {
-            if (curr.Data == newValue;
+            if (curr.Data == oldValue)
             {
                 curr.Data = newValue;
             }
