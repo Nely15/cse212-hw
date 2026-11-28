@@ -145,7 +145,7 @@ public class LinkedList : IEnumerable<int>
         {
             if (curr.Data == value)
             {
-                if (curr = _head)
+                if (curr == _head)
                 {
                     RemoveHead();
                 }
