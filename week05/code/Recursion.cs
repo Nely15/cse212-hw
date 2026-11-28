@@ -133,11 +133,29 @@ public static class Recursion
             currPath = new List<ValueTuple<int, int>>();
         }
         
-        // currPath.Add((1,2)); // Use this syntax to add to the current path
+        // currPath.Add((1,2)); // Use this syntax to add to the current pat
 
         // TODO Start Problem 5
-        // ADD CODE HERE
+        if (!maze.IsValidMove(currPath, x, y))
+        {
+            return;
+        }
 
-        // results.Add(currPath.AsString()); // Use this to add your path to the results array keeping track of complete maze solutions when you find the solution.
+        currPath.Add((x,y));
+        if (maze.IsEnd(x, y))
+        {
+
+            results.Add(currPath.AsString()); // Use this to add your path to the results array keeping track of complete maze solutions when you find the solution.
+            currPath.RemoveAt(currPath.Count -1);
+            return;
+        }
+
+        SolveMaze(results, maze, x + 1, y, currPath);
+        SolveMaze(results, maze, x - 1, y, currPath);
+        SolveMaze(results, maze, x, y + 1, currPath);
+        SolveMaze(results, maze, x, y - 1, currPath);
+
+        currPath.RemoveAt(currPath.Count -1);
+     
     }
 }
